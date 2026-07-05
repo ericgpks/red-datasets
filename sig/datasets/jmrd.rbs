@@ -22,6 +22,7 @@ module Datasets
     end
 
     class Knowledge < Struct[untyped]
+      attr_accessor no_knowledge(): String?
       attr_accessor title(): String?
       attr_accessor year(): String?
       attr_accessor director_name(): String?

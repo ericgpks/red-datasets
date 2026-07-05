@@ -24,6 +24,23 @@ class JMRDTest < Test::Unit::TestCase
                    },
                    first_dialogue_summary(@dataset.to_a))
     end
+
+    test("knowledge has checked knowledge types") do
+      assert do
+        @dataset.all? do |dialogue|
+          dialogue.utterances.all? do |utterance|
+            Array(utterance.checked_knowledge).all? do |checked_knowledge|
+              dialogue.knowledge.respond_to?(checked_knowledge.type)
+            end
+          end
+        end
+      end
+    end
+
+    test("knowledge keeps no knowledge option") do
+      dialogue = @dataset.first
+      assert_equal("[知識なし]", dialogue.knowledge.no_knowledge)
+    end
   end
 
   sub_test_case("valid") do

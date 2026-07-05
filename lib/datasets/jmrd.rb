@@ -36,7 +36,18 @@ module Datasets
       :genres,
       :reviews,
       :synopsis
-    )
+    ) do
+      attr_accessor :no_knowledge
+
+      define_method("[知識なし]") { no_knowledge }
+      define_method("タイトル") { title }
+      define_method("製作年度") { year }
+      define_method("監督") { [director_name, director_description] }
+      define_method("キャスト") { [cast_names, cast_descriptions] }
+      define_method("ジャンル") { genres }
+      define_method("レビュー") { reviews }
+      define_method("あらすじ") { synopsis }
+    end
 
     Utterance = Struct.new(
       :utterance_id,
@@ -139,7 +150,7 @@ module Datasets
     def parse_knowledge(data)
       return nil if data.nil?
 
-      Knowledge.new(
+      knowledge = Knowledge.new(
         data["タイトル"],
         data["製作年度"],
         data["監督名"],
@@ -150,6 +161,8 @@ module Datasets
         data["レビュー"],
         data["あらすじ"]
       )
+      knowledge.no_knowledge = data["[知識なし]"]
+      knowledge
     end
 
     def parse_utterances(data)
