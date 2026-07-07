@@ -120,22 +120,22 @@ module Datasets
         data["dialog_id"],
         data["movie_title"],
         data["first_speaker"],
-        parse_questionnaire(data["questionnaire"]),
-        parse_knowledge(data["knowledge"]),
-        parse_utterances(data["dialog"])
+        build_questionnaire(data["questionnaire"]),
+        build_knowledge(data["knowledge"]),
+        build_utterances(data["dialog"])
       )
     end
 
-    def parse_questionnaire(data)
+    def build_questionnaire(data)
       return if data.nil?
 
       Questionnaire.new(
-        parse_questionnaire_answers(data["recommender"]),
-        parse_questionnaire_answers(data["seeker"])
+        build_questionnaire_answers(data["recommender"]),
+        build_questionnaire_answers(data["seeker"])
       )
     end
 
-    def parse_questionnaire_answers(data)
+    def build_questionnaire_answers(data)
       return nil if data.nil?
 
       QuestionnaireAnswers.new(
@@ -147,7 +147,7 @@ module Datasets
       )
     end
 
-    def parse_knowledge(data)
+    def build_knowledge(data)
       return nil if data.nil?
 
       knowledge = Knowledge.new(
@@ -165,26 +165,26 @@ module Datasets
       knowledge
     end
 
-    def parse_utterances(data)
+    def build_utterances(data)
       return [] if data.nil?
 
       data.map do |utterance_data|
-        parse_utterance(utterance_data)
+        build_utterance(utterance_data)
       end
     end
 
-    def parse_checked_knowledge(data)
+    def build_checked_knowledge(data)
       CheckedKnowledge.new(
         data["type"],
         data["content"]
       )
     end
 
-    def parse_utterance(data)
+    def build_utterance(data)
       checked_knowledge = nil
       if data["checked_knowledge"]
         checked_knowledge = data["checked_knowledge"].map do |ck|
-          parse_checked_knowledge(ck)
+          build_checked_knowledge(ck)
         end
       end
 
