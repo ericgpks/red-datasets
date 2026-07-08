@@ -34,6 +34,7 @@ module Datasets
       attr_accessor synopsis(): Array[String]?
 
       def initialize: (
+        ?String? no_knowledge,
         ?String? title,
         ?String? year,
         ?String? director_name,
