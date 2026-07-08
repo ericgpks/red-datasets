@@ -87,7 +87,7 @@ module Datasets
         ?String? first_speaker,
         ?Questionnaire? questionnaire,
         ?Knowledge? knowledge,
-        ?Array[Utterance] utterances
+        Array[Utterance] utterances
       ) -> void
     end
 
