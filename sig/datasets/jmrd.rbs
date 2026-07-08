@@ -103,18 +103,18 @@ module Datasets
 
     def open_data: () { (Array[Hash[String, untyped]]) -> void } -> void
 
-    def parse_dialogue: (Hash[String, untyped] data) -> Dialogue
+    def build_dialogue: (Hash[String, untyped] data) -> Dialogue
 
-    def parse_questionnaire: (Hash[String, untyped]? data) -> Questionnaire?
+    def build_questionnaire: (Hash[String, untyped]? data) -> Questionnaire?
 
-    def parse_questionnaire_answers: (Hash[String, untyped]? data) -> QuestionnaireAnswers?
+    def build_questionnaire_answers: (Hash[String, untyped]? data) -> QuestionnaireAnswers?
 
-    def parse_knowledge: (Hash[String, untyped]? data) -> Knowledge?
+    def build_knowledge: (Hash[String, untyped]? data) -> Knowledge?
 
-    def parse_utterances: (Array[Hash[String, untyped]]? data) -> Array[Utterance]
+    def build_utterances: (Array[Hash[String, untyped]]? data) -> Array[Utterance]
 
-    def parse_checked_knowledge: (Hash[String, untyped] data) -> CheckedKnowledge
+    def build_checked_knowledge: (Hash[String, untyped] data) -> CheckedKnowledge
 
-    def parse_utterance: (Hash[String, untyped] data) -> Utterance
+    def build_utterance: (Hash[String, untyped] data) -> Utterance
   end
 end
